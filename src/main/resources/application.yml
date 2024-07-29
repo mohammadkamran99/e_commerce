@@ -4,9 +4,9 @@ spring:
     application:
         name: e_commerce
     datasource:
-        password: Akola@123
+        password:
         url: jdbc:mysql://localhost:3306/ECommerce?createDatabaseIfNotExist=true
-        username: root
+        username:
     jpa:
         database-platform: org.hibernate.dialect.MySQLDialect
         hibernate:
