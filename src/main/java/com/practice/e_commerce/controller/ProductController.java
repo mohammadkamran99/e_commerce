@@ -2,6 +2,7 @@ package com.practice.e_commerce.controller;
 
 import com.practice.e_commerce.domain.Product;
 import com.practice.e_commerce.service.ProductServiceImpl;
+import jdk.jshell.spi.ExecutionControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,5 +34,11 @@ public class ProductController {
     @GetMapping("/getAllProduct")
     public ResponseEntity<?> getAllProduct() {
         return new ResponseEntity<>(productService.getAllProduct(), HttpStatus.OK);
+    }
+
+    @PutMapping("/updateProduct/{id}")
+    public ResponseEntity<?> updateProduct(@PathVariable long id,@RequestBody Product product) throws ExecutionControl.UserException {
+        Product updateProduct = productService.updateProduct(id, product);
+        return new ResponseEntity<>(updateProduct, HttpStatus.OK);
     }
 }

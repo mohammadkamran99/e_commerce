@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -37,8 +38,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product updateProduct(long id) {
-        return null;
+    public Product updateProduct(long id,Product product) {
+        Product product1 = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Mobile not found with id " + id));
+
+        product1.setName(product.getName());
+        product1.setPrice(product.getPrice());
+
+        return productRepository.save(product1);
     }
 
     @Override
